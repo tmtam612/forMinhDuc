@@ -1,0 +1,129 @@
+﻿@model Client.Models.bill
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>bill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lenght)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lenght)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.receivername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.receivername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sentname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sentname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sentaddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sentaddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.receiveraddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.receiveraddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location.name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

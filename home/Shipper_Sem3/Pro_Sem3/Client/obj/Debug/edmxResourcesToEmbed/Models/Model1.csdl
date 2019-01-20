@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pro_sem3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bill">
+    <Key>
+      <PropertyRef Name="billID" />
+    </Key>
+    <Property Name="billID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="weight" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="lenght" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="width" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="receivername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="receiveraddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="locationID" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="height" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="location" Relationship="Self.FK_bills_location" FromRole="bills" ToRole="location" />
+    <NavigationProperty Name="products" Relationship="Self.FK_product_bills" FromRole="bills" ToRole="product" />
+  </EntityType>
+  <EntityType Name="location">
+    <Key>
+      <PropertyRef Name="locationID" />
+    </Key>
+    <Property Name="locationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="bills" Relationship="Self.FK_bills_location" FromRole="location" ToRole="bills" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memID" />
+    </Key>
+    <Property Name="memID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="weight" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="lenght" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="height" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="width" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="proID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="billID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="bill" Relationship="Self.FK_product_bills" FromRole="product" ToRole="bills" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_bills_location">
+    <End Role="location" Type="Self.location" Multiplicity="1" />
+    <End Role="bills" Type="Self.bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="location">
+        <PropertyRef Name="locationID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="locationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_bills">
+    <End Role="bills" Type="Self.bill" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bills">
+        <PropertyRef Name="billID" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="billID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pro_sem3Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bills" EntityType="Self.bill" />
+    <EntitySet Name="locations" EntityType="Self.location" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_bills_location" Association="Self.FK_bills_location">
+      <End Role="location" EntitySet="locations" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_bills" Association="Self.FK_product_bills">
+      <End Role="bills" EntitySet="bills" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

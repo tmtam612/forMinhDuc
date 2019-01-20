@@ -1,0 +1,42 @@
+﻿@model Client.Models.product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.proID)
+
+        @Html.HiddenFor(model => model.weight)
+
+        @Html.HiddenFor(model => model.lenght)
+
+        @Html.HiddenFor(model => model.height)
+
+        @Html.HiddenFor(model => model.width)
+
+        @Html.HiddenFor(model => model.description)
+
+        @Html.HiddenFor(model => model.name)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

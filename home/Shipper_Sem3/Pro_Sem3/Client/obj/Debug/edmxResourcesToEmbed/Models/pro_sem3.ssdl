@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pro_sem3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bills">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="proID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="weight" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="lenght" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="width" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="receivername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sentname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="sentaddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="receiveraddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="locationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="location">
+    <Key>
+      <PropertyRef Name="locationID" />
+    </Key>
+    <Property Name="locationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="memID" />
+    </Key>
+    <Property Name="memID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="proID" />
+    </Key>
+    <Property Name="proID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="weight" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="lenght" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="height" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="width" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_bills_location">
+    <End Role="location" Type="Self.location" Multiplicity="1" />
+    <End Role="bills" Type="Self.bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="location">
+        <PropertyRef Name="locationID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="locationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bills_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="bills" Type="Self.bills" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="proID" />
+      </Principal>
+      <Dependent Role="bills">
+        <PropertyRef Name="proID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pro_sem3ModelStoreContainer">
+    <EntitySet Name="bills" EntityType="Self.bills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_bills_location" Association="Self.FK_bills_location">
+      <End Role="location" EntitySet="location" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bills_product" Association="Self.FK_bills_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

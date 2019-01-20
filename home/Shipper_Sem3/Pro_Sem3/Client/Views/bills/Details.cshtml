@@ -1,0 +1,225 @@
+﻿@model Client.Models.bill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var dagiaohang = "Shipped";
+    var chuagiaohang = "haven't been shipped";
+
+}
+
+<div class="form-horizontal" style="margin:auto;margin-top:20px;margin-bottom:20px;width:90%;border:double">
+    <h4 style="text-align:center;margin:20px 20px 20px 20px">Bill</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.billID, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.billID, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.billID
+                    @Html.ValidationMessageFor(model => model.billID, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.name
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.date
+                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.sentname, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.sentname, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.sentname
+                    @Html.ValidationMessageFor(model => model.sentname, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.receivername, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.receivername, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.receivername
+                    @Html.ValidationMessageFor(model => model.receivername, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.sentaddress, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.sentaddress, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.sentaddress
+                    @Html.ValidationMessageFor(model => model.sentaddress, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.receiveraddress, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.receiveraddress, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.receiveraddress
+                    @Html.ValidationMessageFor(model => model.receiveraddress, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.quantity, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.quantity, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.quantity
+                    @Html.ValidationMessageFor(model => model.quantity, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.width, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.width
+                    @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.lenght, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.lenght, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.lenght
+                    @Html.ValidationMessageFor(model => model.lenght, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.weight, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.weight, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.weight
+                    @Html.ValidationMessageFor(model => model.weight, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.height, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.height, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.height
+                    @Html.ValidationMessageFor(model => model.height, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.TextAreaFor(model => model.description, 5, 30, new { @style = "display:none;" })
+                    @Model.description
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.location.name, "location", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.location.name, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.location.name
+                    @Html.ValidationMessageFor(model => model.location.name, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row" style="margin:20px 20px 20px 20px">
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                    @Model.total
+                    @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+                </p>
+            </div>
+            <div class="col-md-2" style="display:flex;justify-content:flex-start">
+                @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <p>
+                    @if (Model.status == false)
+                    {
+                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                        @chuagiaohang
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
+                        @dagiaohang
+                    }
+
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12" style="display:flex;justify-content:center">
+            <input type="submit" value="Bill Detail" class="btn btn-success" onclick="location.href='@Url.Action("Detail","products",new {@id=Model.billID })'" />
+        </div>
+    </div>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>

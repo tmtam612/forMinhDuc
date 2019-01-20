@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pro_sem3ModelStoreContainer" CdmEntityContainer="pro_sem3Entities1">
+    <EntitySetMapping Name="bills">
+      <EntityTypeMapping TypeName="pro_sem3Model.bill">
+        <MappingFragment StoreEntitySet="bills">
+          <ScalarProperty Name="billID" ColumnName="billID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="lenght" ColumnName="lenght" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="receivername" ColumnName="receivername" />
+          <ScalarProperty Name="sentname" ColumnName="sentname" />
+          <ScalarProperty Name="sentaddress" ColumnName="sentaddress" />
+          <ScalarProperty Name="receiveraddress" ColumnName="receiveraddress" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="locationID" ColumnName="locationID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="height" ColumnName="height" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="locations">
+      <EntityTypeMapping TypeName="pro_sem3Model.location">
+        <MappingFragment StoreEntitySet="location">
+          <ScalarProperty Name="locationID" ColumnName="locationID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="pro_sem3Model.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="memID" ColumnName="memID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="pro_sem3Model.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="lenght" ColumnName="lenght" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="proID" ColumnName="proID" />
+          <ScalarProperty Name="billID" ColumnName="billID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="pro_sem3Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

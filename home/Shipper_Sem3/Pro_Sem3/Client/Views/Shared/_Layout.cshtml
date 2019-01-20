@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Shipping Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+    <!-- //for-mobile-apps -->
+    <link href="@Url.Content("~/Content/css/font-awesome.css")" rel="stylesheet">
+
+    <link href="@Url.Content("~/Content/css/bootstrap.css")" type="text/css" rel="stylesheet" media="all">
+    <!--banner slider  -->
+    <link href="@Url.Content("~/Content/css/JiSlider.css")" rel="stylesheet">
+    <!-- //banner-slider -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/flexslider.css")" type="text/css" media="screen" property="" />
+
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" media="all" />
+    <link href="//fonts.googleapis.com/css?family=Rubik:400,500,700,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- header -->
+    <section class="w3layouts-header py-2">
+        <div class="container">
+            <!-- header -->
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
+
+                    <h1>
+                        @if (Session["userName"] != null)
+                        {<a class="navbar-brand" href="@Url.Action("Index","bills")">
+                                SaigonShip
+
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                                SaigonShip
+                            </a>
+                        }
+                    </h1>
+
+                    <input type="text" placeholder="Search.." style="
+    border-radius: 25px;
+    width: 14%;
+">
+                    <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-lg-auto text-center">
+                            <li class="nav-item active  mr-3">
+                                <a class="nav-link" href="#">
+                                    Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  mr-3">
+                                <a class="nav-link" href="#">about</a>
+                            </li>
+                            <li class="nav-item  mr-3">
+                                <a class="nav-link" href="#">Services</a>
+                            </li>
+                            <li class="nav-item dropdown mr-3">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    Member
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("Logout","Home")">LogOut</a>
+                                    <a class="dropdown-item" href="#"></a>
+
+
+
+                                </div>
+                            </li>
+                            <li class="nav-item mr-3">
+                                <a class="nav-link" href="contact.html">contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <i class="fas fa-phone pr-2"></i>CALL US 033-3243-332
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
+            <!-- //header -->
+
+        </div>
+    </section>
+    <!-- //header -->
+    @if (TempData["AlertMessage"] != null)
+    {
+    <div id="AlertBox" class="alert @TempData["AlertType"] hide" style="text-align: center;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @TempData["AlertMessage"]
+    </div>
+    }
+    @RenderBody()
+    <footer>
+        <section class="footer py-md-5">
+            <div class="container py-4 mt-2">
+                <div class="row footer_inner_info_w3ls_agileits">
+                    <div class="col-md-3 footer-left">
+                        <h2><a href="~/Views/Home/Index.cshtml">SaiGonShip</a></h2>
+                        <p class="mb-3 mt-3">Thank you for visiting our website.</p>
+                        <ul class="social-nav footer-social social two">
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fab fa-pinterest" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-2 sign-gd">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="~/Views/Home/Index.cshtml">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Services</a></li>
+
+                            <li><a href="">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 sign-gd flickr-post">
+                        <h4>Instagram</h4>
+                        <ul>
+                            <li><a href="#"><img src="~/Content/image/goi3.jpg" alt=" " class="img-fluid" /></a></li>
+                            <li><a href="#"><img src="~/Content/image/goi2.jpg" alt=" " class="img-fluid" /></a></li>
+                            <li><a href="#"><img src="~/Content/image/goi4.jpg" alt=" " class="img-fluid" /></a></li>
+                            <li><a href="#"><img src="~/Content/image/goi4.jpg" alt=" " class="img-fluid" /></a></li>
+                            <li><a href="#"><img src="~/Content/image/goi3.jpg" alt=" " class="img-fluid" /></a></li>
+                            <li><a href="#"><img src="~/Content/image/goi2.jpg" alt=" " class="img-fluid" /></a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 sign-gd-two">
+                        <h4>Contact Information</h4>
+                        <div class="address">
+                            <div class="address-grid">
+                                <div class="address-left">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <div class="address-right">
+                                    <h6>Phone Number</h6>
+                                    <p>+ 0332349233</p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="address-grid">
+                                <div class="address-left">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div class="address-right">
+                                    <h6>Email Address</h6>
+                                    <p>Email :<a href="mailto:vovantien511999@gmail.com"> mail@vovantien511999.com</a></p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="address-grid">
+                                <div class="address-left">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <div class="address-right">
+                                    <h6>Location</h6>
+                                    <p>
+                                        123 Hiep Binh, Thu Duc, HCM City.
+
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <p class="copy-right py-3">&copy 2019 SaiGonShip. All rights reserved | Design by</a></p>
+        <!-- //footer -->
+    </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">SaiGonShipper</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="agileits-w3layouts-info">
+                        <img src="images/g1.jpg" class="img-fluid" alt="" />
+                        <p>Duis venenatis, turpis eu bibendum porttitor, sapien quam ultricies tellus, ac rhoncus risus odio eget nunc. Pellentesque ac fermentum diam. Integer eu facilisis nunc, a iaculis felis. Pellentesque pellentesque tempor enim, in dapibus turpis porttitor quis. </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Modal -->
+    <!-- js -->
+    <script src="@Url.Content("~/Content/js/jquery-2.2.3.min.js")"></script>
+    <!-- //js-->
+    <!--banner-slider-->
+    <script src="@Url.Content("~/Content/js/JiSlider.js")"></script>
+    <script>
+        $(window).load(function () {
+            $('#JiSlider').JiSlider({
+                color: '#fff',
+                start: 1,
+                reverse: false
+            }).addClass('ff')
+        })
+    </script>
+    <!-- //banner-slider -->
+    <!-- flexSlider -->
+    <script defer src="@Url.Content("~/Content/js/jquery.flexslider.js")"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- //flexSlider -->
+    <!-- start-smooth-scrolling -->
+    <script src="@Url.Content("~/Content/js/move-top.js")"></script>
+    <script src="@Url.Content("~/Content/js/easing.js")"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- stats -->
+    <script src="@Url.Content("~/Content/js/jquery.waypoints.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery.countup.js")"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+    <!-- //stats -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src="@Url.Content("~/Content/js/SmoothScroll.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery-2.2.3.min.js")"></script>
+    <!-- //js-->
+    <!--banner-slider-->
+    <script src="@Url.Content("~/Content/js/JiSlider.js")"></script>
+    <script>
+        $(window).load(function () {
+            $('#JiSlider').JiSlider({
+                color: '#fff',
+                start: 1,
+                reverse: false
+            }).addClass('ff')
+        })
+    </script>
+    <!-- //banner-slider -->
+    <!-- flexSlider -->
+    <script defer src="@Url.Content("~/Content/js/jquery.flexslider.js")"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- //flexSlider -->
+    <!-- start-smooth-scrolling -->
+    <script src="@Url.Content("~/Content/js/move-top.js")"></script>
+    <script src="@Url.Content("~/Content/js/easing.js")"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- stats -->
+    <script src="@Url.Content("~/Content/js/jquery.waypoints.min.js")"></script>
+    <script src="@Url.Content("~/Content/js/jquery.countup.js")"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+    <!-- //stats -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+
+    <script src="@Url.Content("~/Content/js/bootstrap.js")"></script>
+</body>
+
+</html>

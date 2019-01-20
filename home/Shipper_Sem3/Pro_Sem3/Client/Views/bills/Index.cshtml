@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<Client.Models.bill>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal" style="margin:auto;margin-top:20px;margin-bottom:20px;width:90%;border:double">
+    <h4 style="text-align:center;margin:20px 20px 20px 20px">List of Bills</h4>
+    @Html.ActionLink("Create New", "Create", "bills", new { @style = "text-align:center;margin:20px 20px 20px 20px" })
+    @using (Html.BeginForm())
+    {
+        <p>
+            <label style="text-align:center;color:black;margin:20px 20px 20px 20px">Search</label>
+            @Html.DropDownList("typeSearch", ViewBag.listItems1 as List<SelectListItem>, new { @style = "margin:20px 20px 20px 20px;width:20%;height:30px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);" })
+            @Html.DropDownList("statusString", ViewBag.listItems2 as List<SelectListItem>, new { @style = "margin:20px 20px 20px 20px;width:20%;height:30px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);" })
+            <input style="margin:10px 10px 10px 10px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);width:20%" type="text" id="searchString" placeholder="search" name="searchString" />
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <hr />
+    <table class="table">
+        <tr>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().billID)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().date)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().quantity)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().weight)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().lenght)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().width)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().height)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().total)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.billID)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.weight)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.lenght)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.width)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.height)
+            </td>
+            <td style="color:black">
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.billID }) |
+            </td>
+        </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+</div>

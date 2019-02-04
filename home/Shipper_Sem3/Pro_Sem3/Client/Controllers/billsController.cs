@@ -13,7 +13,7 @@ namespace Client.Controllers
 {
     public class billsController : Controller
     {
-        private pro_sem3Entities1 db = new pro_sem3Entities1();
+        private pro_sem3Entities db = new pro_sem3Entities();
         private void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;
@@ -299,7 +299,6 @@ namespace Client.Controllers
                     foreach (var item in model)
                     {
                         item.bill = modelBill;
-                        item.description = "abc";
                         db.products.Add(item);
                     }
                     db.SaveChanges();
@@ -330,18 +329,59 @@ namespace Client.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "proID,username,weight,lenght,width,description,name,receivername,sentname,sentaddress,receiveraddress,total,locationID,quantity")] bill bill)
+        public ActionResult Edit([Bind(Include = "billID,username,weight,lenght,width,description,name,receivername,sentname,sentaddress,receiveraddress,total,locationID,quantity")] bill bill)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bill).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["bill"] = bill;
+                return RedirectToAction("EditID", "products");
+                
             }
             ViewBag.locationID = new SelectList(db.locations, "locationID", "name", bill.locationID);
             return View(bill);
         }
-
+        public ActionResult EditBill()
+        {
+            if (Session["userName"] != null)
+            {
+                var model = TempData["mydata"] as List<product>;
+                var modelBill = TempData["bill"] as bill;
+                if (model != null && modelBill != null)
+                {
+                    var locationTax = db.locations.FirstOrDefault(x => x.locationID == modelBill.locationID).price;
+                    decimal total = 0;
+                    foreach (var item in model)
+                    {
+                        var priceForWeight = this.priceForWeight(item.weight);
+                        var priceForHeight = this.priceForHeight(item.height);
+                        var priceForWidth = this.priceForWidth(item.width);
+                        total = total + priceForHeight + priceForWeight + priceForWidth;
+                    }
+                    ViewBag.locationName = db.locations.FirstOrDefault(x => x.locationID == modelBill.locationID).name;
+                    modelBill.total = total + locationTax + total * 10 / 100;
+                    modelBill.date = DateTime.Now;
+                    var location = db.locations.FirstOrDefault(x => x.locationID == modelBill.locationID);
+                    modelBill.location = location;
+                    var modelTemp = db.products.Where(x => x.billID == modelBill.billID).ToList();
+                    //var bill = db.bills.FirstOrDefault(x => x.billID == modelBill.billID);
+                    //bill = modelBill;
+                    db.Entry(modelBill).State = EntityState.Modified;
+                    foreach (var item in modelTemp)
+                    {
+                        db.products.Remove(item);
+                    }
+                    foreach (var item in model)
+                    {
+                        item.bill = modelBill;
+                        db.products.Add(item);
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index","bills");
+                }
+                else return RedirectToAction("Edit", "bills");
+            }
+            else return RedirectToAction("Index", "Home");
+        }
         // GET: bills/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -363,6 +403,11 @@ namespace Client.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             bill bill = db.bills.Find(id);
+            var product = db.products.Where(x => x.billID == id).ToList();
+            foreach(var item in product)
+            {
+                db.products.Remove(item);
+            }
             db.bills.Remove(bill);
             db.SaveChanges();
             return RedirectToAction("Index");

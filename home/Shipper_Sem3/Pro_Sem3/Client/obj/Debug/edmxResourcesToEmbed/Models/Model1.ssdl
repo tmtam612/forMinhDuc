@@ -22,6 +22,19 @@
     <Property Name="status" Type="bit" Nullable="false" />
     <Property Name="height" Type="decimal" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PositionID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="location">
     <Key>
       <PropertyRef Name="locationID" />
@@ -41,6 +54,13 @@
     <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="PositionID" />
+    </Key>
+    <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="positionName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="product">
     <Key>
@@ -77,6 +97,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Employee_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="PositionID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="PositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_product_bills">
     <End Role="bills" Type="Self.bills" Multiplicity="1" />
     <End Role="product" Type="Self.product" Multiplicity="*" />
@@ -91,13 +123,19 @@
   </Association>
   <EntityContainer Name="pro_sem3ModelStoreContainer">
     <EntitySet Name="bills" EntityType="Self.bills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_bills_location" Association="Self.FK_bills_location">
       <End Role="location" EntitySet="location" />
       <End Role="bills" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Employee" EntitySet="Employee" />
     </AssociationSet>
     <AssociationSet Name="FK_product_bills" Association="Self.FK_product_bills">
       <End Role="bills" EntitySet="bills" />

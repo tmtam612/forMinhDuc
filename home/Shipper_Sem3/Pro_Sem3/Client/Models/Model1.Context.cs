@@ -13,10 +13,10 @@ namespace Client.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class pro_sem3Entities1 : DbContext
+    public partial class pro_sem3Entities : DbContext
     {
-        public pro_sem3Entities1()
-            : base("name=pro_sem3Entities1")
+        public pro_sem3Entities()
+            : base("name=pro_sem3Entities")
         {
         }
     
@@ -26,8 +26,10 @@ namespace Client.Models
         }
     
         public virtual DbSet<bill> bills { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<location> locations { get; set; }
         public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }

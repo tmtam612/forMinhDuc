@@ -78,6 +78,11 @@
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.billID }) |
             </td>
+            @if (item.status == false)
+            {
+                <td>@Html.ActionLink("Edit", "Edit", new { id = item.billID }) |</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.billID }) |</td>
+}
         </tr>
         }
 

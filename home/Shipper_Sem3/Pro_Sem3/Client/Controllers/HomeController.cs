@@ -10,12 +10,19 @@ namespace Client.Controllers
 {
     public class HomeController : Controller
     {
-        private pro_sem3Entities1 db = new pro_sem3Entities1();
+        private pro_sem3Entities db = new pro_sem3Entities();
         public ActionResult Index()
+        {
+            if (Session["userName"] == null)
+            {
+                return View();
+            }
+            else return RedirectToAction("loginSuccesfully");
+        }
+        public ActionResult loginSuccesfully()
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -68,41 +75,62 @@ namespace Client.Controllers
         public ActionResult Logout()
         {
             Session["userName"] = null;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
         [HttpPost]
         public ActionResult Login(string userName, string passWord)
         {
-            if (userName != "" && passWord != "")
-            {
-                var pass = MD5Hash(passWord);
-                var result = db.Members.FirstOrDefault(x => x.username == userName);
-                if (result != null)
+                if (userName != "" && passWord != "")
                 {
-                    if (result.pass == pass.ToUpper())
+                    var pass = MD5Hash(passWord);
+                    var result = db.Members.FirstOrDefault(x => x.username == userName);
+                    if (result != null)
                     {
-                        Session["userName"] = userName;
-                        SetAlert("Log in Successfully", "success");
-                        return View();
+                        if (result.pass == pass.ToUpper())
+                        {
+                            Session["userName"] = userName;
+                            SetAlert("Log in Successfully", "success");
+                            return View();
+                        }
+                        else
+                        {
+                            SetAlert("Wrong password", "error");
+                            return RedirectToAction("Index", "Home");
+                        }
+
                     }
                     else
                     {
-                        SetAlert("Wrong password", "error");
-                        return RedirectToAction("Index", "Home");
+                        var acc = db.Employees.FirstOrDefault(x => x.username == userName);
+                        if (acc == null)
+                        {
+                            SetAlert("The account does not exist", "error");
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            if (acc.password == pass.ToUpper())
+                            {
+                                Session["userName"] = userName;
+                                Session["positionID"] = acc.PositionID;
+                                //SetAlert("Log in Successfully", "success");
+                                var stringId = Session["userName"].ToString();
+                                return RedirectToAction("Details","Employees",new { @id = stringId });
+                            }
+                            else
+                            {
+                                SetAlert("Wrong password", "error");
+                                return RedirectToAction("Index", "Home");
+                            }
+                        }
                     }
-
                 }
                 else
                 {
-                    SetAlert("The account does not exist", "error");
+                    SetAlert("Please type your username and password", "warning");
                     return RedirectToAction("Index", "Home");
                 }
-            }
-            else
-            {
-                SetAlert("Please type your username and password", "warning");
-                return RedirectToAction("Index", "Home");
-            }
+            
         }
         private void SetAlert(string message, string type)
         {

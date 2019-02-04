@@ -48,16 +48,16 @@
                         @Html.EditorFor(m => m[i].name, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true } })
                     </td>
                     <td>
-                        @Html.EditorFor(m => m[i].height, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true } })
+                        @Html.EditorFor(m => m[i].height, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true,@min=0 } })
                     </td>
                     <td>
-                        @Html.EditorFor(m => m[i].lenght, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true } })
+                        @Html.EditorFor(m => m[i].lenght, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true, @min = 0 } })
                     </td>
                     <td>
-                        @Html.EditorFor(m => m[i].weight, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true } })
+                        @Html.EditorFor(m => m[i].weight, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true, @min = 0 } })
                     </td>
                     <td>
-                        @Html.EditorFor(m => m[i].width, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true } })
+                        @Html.EditorFor(m => m[i].width, new { htmlAttributes = new { @style = "width:70px; display: none", @required = true, @min = 0 } })
                     </td>
                 </tr>
 

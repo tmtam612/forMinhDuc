@@ -13,7 +13,7 @@ namespace Client.Controllers
 {
     public class productsController : Controller
     {
-        private pro_sem3Entities1 db = new pro_sem3Entities1();
+        private pro_sem3Entities db = new pro_sem3Entities();
 
         // GET: products
         public ActionResult Index()
@@ -108,7 +108,59 @@ namespace Client.Controllers
             //ViewBag.proID = new SelectList(db.bills, "proID", "username", product.proID);
             //return View(product);
         }
+        public ActionResult EditID()
+        {
+            if (Session["userName"] != null)
+            {
+                var id = TempData["bill"] as bill;
+                if (id != null)
+                {
+                    List<product> l = new List<product>(id.quantity);
+                    for (var i = 0; i < id.quantity; i++)
+                    {
+                        product product = new product();
+                        product.billID = id.billID;
+                        l.Add(product);
+                    }
+                    TempData["bill"] = id;
+                    ViewBag.proID = new SelectList(db.bills, "proID", "username");
+                    return View(l);
+                }
+                else return RedirectToAction("Create", "bills");
+            }
+            else return RedirectToAction("Index", "Home");
+        }
+        [HttpPost, ActionName("EditID")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditIDs(List<product> product)
+        {
+            if (Session["userName"] != null)
+            {
+                var modelBill = TempData["bill"] as bill;
+                decimal height = 0;
+                decimal length = 0;
+                decimal width = 0;
+                decimal weight = 0;
+                foreach (var item in product)
+                {
+                    if (item.height > height) height = item.height;
+                    weight += item.weight;
+                    width += item.width;
+                    length += item.lenght;
+                }
+                modelBill.lenght = length;
+                modelBill.width = width;
+                modelBill.weight = weight;
+                modelBill.height = height;
+                TempData["bill"] = modelBill;
+                TempData["mydata"] = product;
+                return RedirectToAction("EditBill", "bills");
+            }
+            else return RedirectToAction("Index", "Home");
 
+            //ViewBag.proID = new SelectList(db.bills, "proID", "username", product.proID);
+            //return View(product);
+        }
         // GET: products/Edit/5
         public ActionResult Edit(int? id)
         {

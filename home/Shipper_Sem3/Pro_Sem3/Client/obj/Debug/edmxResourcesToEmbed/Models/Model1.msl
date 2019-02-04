@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="pro_sem3ModelStoreContainer" CdmEntityContainer="pro_sem3Entities1">
+  <EntityContainerMapping StorageEntityContainer="pro_sem3ModelStoreContainer" CdmEntityContainer="pro_sem3Entities">
     <EntitySetMapping Name="bills">
       <EntityTypeMapping TypeName="pro_sem3Model.bill">
         <MappingFragment StoreEntitySet="bills">
@@ -24,6 +24,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="pro_sem3Model.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="locations">
       <EntityTypeMapping TypeName="pro_sem3Model.location">
         <MappingFragment StoreEntitySet="location">
@@ -43,6 +57,14 @@
           <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="pro_sem3Model.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+          <ScalarProperty Name="positionName" ColumnName="positionName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

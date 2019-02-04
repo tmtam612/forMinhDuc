@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<Client.Models.Employee>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "ManageEmployee";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    var positionId= ViewBag.position;
+}
+
+<div class="form-horizontal" style="margin:auto;margin-top:20px;margin-bottom:20px;width:90%">
+    <h4 style="text-align:center;margin:20px 20px 20px 20px">List of Employees</h4>
+    @using (Html.BeginForm())
+    {
+        <p>
+            <label style="text-align:center;color:black;margin:20px 20px 20px 20px">Search</label>
+            <input style="margin:10px 10px 10px 10px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);width:20%" type="text" id="searchString" placeholder="search" name="searchString" />
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <hr />
+    <table class="table">
+        <tr>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().username)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().fullname)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().phone)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().address)
+            </th>
+            <th style="color:black;font-weight:bold">
+                @Html.DisplayNameFor(model => model.First().email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color:black">
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td style="color:black">
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td style="color:black">
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td style="color:black">
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td style="color:black">
+                    @Html.DisplayFor(modelItem => item.email)
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.username }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.username }) |
+                    @if (positionId == 1)
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+                    }
+                    
+                </td>
+            </tr>
+         }
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("ManageEmployee",
+            new { page }))
+    </div>
+

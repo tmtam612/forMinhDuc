@@ -46,16 +46,16 @@
                     @Html.EditorFor(m => m[i].description, new { htmlAttributes = new { @style = "width:100%", @required = true } })
                 </td>
                 <td style="color:black">
-                    @Html.EditorFor(m => m[i].height, new { htmlAttributes = new { @style = "width:70px", @required = true,@type="number" } })
+                    @Html.EditorFor(m => m[i].height, new { htmlAttributes = new { @style = "width:70px", @required = true,@type="number", @min = 0 } })
                 </td>
                 <td style="color:black">
-                    @Html.EditorFor(m => m[i].lenght, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number" } })
+                    @Html.EditorFor(m => m[i].lenght, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number", @min = 0 } })
                 </td>
                 <td style="color:black">
-                    @Html.EditorFor(m => m[i].weight, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number" } })
+                    @Html.EditorFor(m => m[i].weight, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number", @min = 0 } })
                 </td>
                 <td style="color:black">
-                    @Html.EditorFor(m => m[i].width, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number" } })
+                    @Html.EditorFor(m => m[i].width, new { htmlAttributes = new { @style = "width:70px", @required = true, @type = "number", @min = 0 } })
                 </td>
             </tr>
 

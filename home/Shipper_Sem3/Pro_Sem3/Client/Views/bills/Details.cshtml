@@ -7,7 +7,7 @@
     var chuagiaohang = "haven't been shipped";
 
 }
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="form-horizontal" style="margin:auto;margin-top:20px;margin-bottom:20px;width:90%;border:double">
     <h4 style="text-align:center;margin:20px 20px 20px 20px">Bill</h4>
     <hr />
@@ -199,13 +199,15 @@
                 <p>
                     @if (Model.status == false)
                     {
-                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
-                        @chuagiaohang
+                        <div class="w3-light-grey">
+                            <div class="w3-container w3-round-xlarge w3-red w3-center" style="width:50%">Shipping</div>
+                        </div><br>
                     }
                     else
                     {
-                        @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @style = "width:80%;display:none" }, @readonly = true })
-                        @dagiaohang
+                        <div class="w3-light-grey">
+                            <div class="w3-container w3-round-xlarge w3-blue w3-center" style="width:100%">Shipped</div>
+                        </div><br>
                     }
 
                     @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
@@ -219,7 +221,3 @@
         </div>
     </div>
 </div>
-<p>
-    
-    @Html.ActionLink("Back to List", "Index")
-</p>

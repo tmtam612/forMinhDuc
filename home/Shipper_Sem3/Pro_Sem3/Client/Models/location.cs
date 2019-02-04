@@ -29,7 +29,6 @@ namespace Client.Models
         [DataType(DataType.Currency)]
         public decimal price { get; set; }
 
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bill> bills { get; set; }
     }
